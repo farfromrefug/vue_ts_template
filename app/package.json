@@ -1,0 +1,8 @@
+{
+  "android": {
+    "markingMode": "none"
+  },
+  "main": "main.js",
+  "name": "com.akylas.testvueissue",
+  "version": "1.0.0"
+}
