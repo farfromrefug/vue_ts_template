@@ -41,7 +41,7 @@ export default class App extends BaseVueComponent {
     mounted() {
         super.mounted()
         this.page.actionBarHidden = true
-
+    console.log('test log', Home)
         // setTimeout(
         //     () =>
         //         this.$navigateTo(Login, {
