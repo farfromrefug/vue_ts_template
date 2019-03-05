@@ -15,6 +15,7 @@ const nativescriptTarget = require("nativescript-dev-webpack/nativescript-target
 const {
     NativeScriptWorkerPlugin
 } = require("nativescript-worker-loader/NativeScriptWorkerPlugin")
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = env => {
     // Add your custom Activities, Services and other android app components here.
@@ -22,7 +23,7 @@ module.exports = env => {
         "tns-core-modules/ui/frame",
         "tns-core-modules/ui/frame/activity"
     ]
-    console.log('appComponents', appComponents)
+    console.log("appComponents", appComponents)
 
     const platform = env && ((env.android && "android") || (env.ios && "ios"))
     if (!platform) {
@@ -32,7 +33,8 @@ module.exports = env => {
     const platforms = ["ios", "android"]
     const projectRoot = __dirname
 
-    const tsconfig = platform === "android" ? 'tsconfig.android.json' : 'tsconfig.json'
+    const tsconfig =
+        platform === "android" ? "tsconfig.android.json" : "tsconfig.json"
 
     // Default destination inside platforms/<platform>/...
     const dist = resolve(
@@ -105,7 +107,7 @@ module.exports = env => {
                 vue: "nativescript-vue"
             },
             // resolve symlinks to symlinked modules
-            symlinks: true,
+            symlinks: true
         },
         resolveLoader: {
             // don't resolve symlinks to symlinked loaders
@@ -228,6 +230,9 @@ module.exports = env => {
             ]
         },
         plugins: [
+            new ForkTsCheckerWebpackPlugin({
+                tsconfig: resolve(tsconfig)
+            }),
             // ... Vue Loader plugin omitted
             // make sure to include the plugin!
             new VueLoaderPlugin(),
@@ -290,7 +295,7 @@ module.exports = env => {
                 chunk: "vendor",
                 requireModules: ["tns-core-modules/bundle-entry-points"],
                 projectRoot,
-                targetArchs: ['arm'],
+                targetArchs: ["arm"],
                 webpackConfig: config
             })
         )
