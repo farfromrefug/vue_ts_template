@@ -3,6 +3,9 @@ import Vue from "nativescript-vue"
 import "./styles.scss"
 import { isAndroid, isIOS } from "platform"
 
+import View from './native'
+console.log(View)
+
 // Prints Vue logs when --env.production is *NOT* set while building
 Vue.config.silent = false;
 Vue.config['debug'] = false;

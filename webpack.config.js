@@ -233,7 +233,8 @@ module.exports = env => {
             new VueLoaderPlugin(),
             // Define useful constants like TNS_WEBPACK
             new webpack.DefinePlugin({
-                process: undefined,
+                // process: undefined,
+                "process.env.NODE_ENV": JSON.stringify(mode),
                 "global.TNS_WEBPACK": "true",
                 TNS_ENV: JSON.stringify(mode)
             }),
